@@ -36,7 +36,7 @@ install_RAPIDS () {
         bash ./Miniconda3-4.5.4-Linux-x86_64.sh -b -f -p /usr/local
 
         #Installing another conda package first something first seems to fix https://github.com/rapidsai/rapidsai-csp-utils/issues/4
-        conda install -y --prefix /usr/local -c conda-forge openssl python=3.6
+        conda install -y --prefix /usr/local -c conda-forge openssl python=3.7
         
         if (( $RAPIDS_RESULT == $NIGHTLIES )) ;then #Newest nightly packages.  UPDATE EACH RELEASE!
         echo "Installing RAPIDS $RAPIDS_VERSION packages from the nightly release channel"
@@ -44,7 +44,7 @@ install_RAPIDS () {
         # install RAPIDS packages
             conda install -y --prefix /usr/local \
                     -c rapidsai-nightly/label/xgboost -c rapidsai-nightly -c nvidia -c conda-forge \
-                    python=3.6 cudatoolkit=10.0 \
+                    python=3.7 cudatoolkit=10.0 \
                     cudf=$RAPIDS_VERSION cuml cugraph gcsfs pynvml cuspatial xgboost \
                     dask-cudf
         elif (( $RAPIDS_RESULT == 13 )) ;then #0.13 uses xgboost 1.0.2, low than that use 1.0.0
@@ -53,7 +53,7 @@ install_RAPIDS () {
             # install RAPIDS packages
             conda install -y --prefix /usr/local \
                 -c rapidsai/label/main -c rapidsai -c nvidia -c conda-forge \
-                python=3.6 cudatoolkit=10.0 \
+                python=3.7 cudatoolkit=10.0 \
                 cudf=$RAPIDS_VERSION cuml cugraph cuspatial gcsfs pynvml xgboost=1.0.2dev.rapidsai$RAPIDS_VERSION \
                 dask-cudf
         else #Stable packages
@@ -62,7 +62,7 @@ install_RAPIDS () {
             # install RAPIDS packages
             conda install -y --prefix /usr/local \
                 -c rapidsai/label/main -c rapidsai -c nvidia -c conda-forge \
-                python=3.6 cudatoolkit=10.0 \
+                python=3.7 cudatoolkit=10.0 \
                 cudf=$RAPIDS_VERSION cuml cugraph cuspatial gcsfs pynvml xgboost=1.0.0dev.rapidsai$RAPIDS_VERSION \
                 dask-cudf
         fi
